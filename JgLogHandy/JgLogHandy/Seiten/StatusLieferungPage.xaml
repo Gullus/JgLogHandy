@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:daten="clr-namespace:JgLogHandy"
+             mc:Ignorable="d"
+             Title="Korrktur Status"
+             x:Class="JgLogHandy.Seiten.StatusLieferungPage">
+    <ContentPage.Content>
+        <Grid RowSpacing="-3" x:DataType="daten:TApiLieferung" x:Name="gridLieferung" Margin="5" VerticalOptions="EndAndExpand">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Text="Korrektur/Annulierung Lieferung"  HorizontalOptions="CenterAndExpand" FontAttributes="Bold" Style="{StaticResource l1}" />
+            <Label Text="Es kann der Status der Lieferung direkt gesetzt werden. Mit annulieren, kann die aktuelle Lieferung auf offen zurückgesetzt werden." Grid.Row="2"/>
+
+            <Label Text="Baustelle" Grid.Row="4"/>
+            <Label Style="{StaticResource l1}" Grid.Row="5">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding NR}" TextColor="Red" FontAttributes="Bold" Style="{StaticResource l1}"/>
+                        <Span Text=" " />
+                        <Span Text="{Binding Bst}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Button Text="Lieferung angenommen" x:Name="BtnAngenommen" Clicked="BtnLieferung_Clicked" Grid.Row="7"/>
+            <Button Text="Fahrzeug wird beladen" x:Name="BtnBeladung" Clicked="BtnLieferung_Clicked" Grid.Row="8"/>
+            <Button Text="Anfahrt zur Baustelle" x:Name="BtnAnfahrt" Clicked="BtnLieferung_Clicked" Grid.Row="9"/>
+            <Button Text="Warte auf Baustelle" x:Name="BtnAnkunft" Clicked="BtnLieferung_Clicked" Grid.Row="10"/>
+            <Button Text="Fahrzeug wird entladen" x:Name="BtnEntladung" Clicked="BtnLieferung_Clicked" Grid.Row="11"/>
+            <Button Text="Fahrzeug wurde entladen" x:Name="BtnFertig" Clicked="BtnLieferung_Clicked" Grid.Row="12"/>
+
+            <Button Text="Lieferung zurückgeben" Clicked="BtnAnullieren_Clicked" Grid.Row="14" ImageSource="abmelden"/>
+
+            <Button Text="Vorgang Abbrechen" Clicked="BtnAbbrechen_Clicked" Grid.Row="16" ImageSource="abbrechen"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

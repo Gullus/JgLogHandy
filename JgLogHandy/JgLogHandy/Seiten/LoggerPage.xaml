@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="JgLogHandy.Seiten.LoggerPage" Title="Logeinträge">
+    <ContentPage.Content>
+        <ListView x:Name="gridLogger" ItemsSource="{Binding}" HasUnevenRows="True" Margin="5">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="5" Spacing="0">
+                            <!--<Label Text="{Binding Zeit, StringFormat='{0:dd.MM.yy HH:mm:ss}' }" />-->
+                            <Label Text="{Binding Text}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

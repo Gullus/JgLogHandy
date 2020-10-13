@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="JgLogHandy.Seiten.RegisterPage" Title="JgLogistik - Start">
+
+    <StackLayout Spacing="-3" Margin="5">
+        <StackLayout.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Padding" Value="20"></Setter>
+            </Style>
+        </StackLayout.Resources>
+
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label Text="Willkommen zur Registrierung" HorizontalOptions="Center" Style="{StaticResource l0}"/>
+            <Label Text="Jg-Logistik" HorizontalOptions="Center" Style="{StaticResource l0}"/>
+            <Label Margin="20, 20, 20 , 30" Text="Bitte registrieren Sie vor dem Einsatz Ihr Handy. Melden Sie sich bitte dazu bei einem Varantwortlichen. Dieser kann Ihnen die notwendigen Funktionen am Computer freischalten." HorizontalOptions="Center" />
+        </StackLayout>
+
+        <ActivityIndicator x:Name="indikatorHandy"/>
+
+        <Button Text="Registrierung Scannen" Clicked="BtnScan_Clicked" ImageSource="scan.png" />
+        <Button Text="Test Verbindung" Clicked="BtnTest_Clicked" ImageSource="optionen.png" />
+
+    </StackLayout>
+
+</ContentPage>

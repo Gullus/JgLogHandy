@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:daten="clr-namespace:JgLogHandy"
+             mc:Ignorable="d"
+             Title="JgLogistik"
+             x:Class="JgLogHandy.Seiten.UnterbrechungPage">
+    
+    <ContentPage.Content>
+        <StackLayout Margin="10" x:DataType="daten:TUnterBrechung" x:Name="gridUnterbrechung" VerticalOptions="EndAndExpand">
+
+            <Label Text="Vorgang" HorizontalOptions="Center" FontSize="Body"/>
+            <Label HorizontalOptions="Center" FontSize="Large" x:Name="TxtStatus"/>
+
+            <Label Text="Zeit der Unterbrechung" HorizontalOptions="Center" FontSize="Body"/>
+            <Label Text="{Binding AnzeigeZeit}" HorizontalOptions="Center" FontSize="Large"/>
+
+            <Button x:Name="BtnBeenden" Clicked="Beenden_Clicked" Padding="15" ImageSource="ok" Margin="0, 40, 0, 0 "/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

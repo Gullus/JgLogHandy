@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:daten="clr-namespace:JgLogHandy"
+             mc:Ignorable="d"
+             x:Class="JgLogHandy.Seiten.StammPage" 
+             Title="JgLogistik - Arbeitsbereich">
+
+    <ContentPage.Content>
+        <StackLayout Margin="10" Spacing="5">
+            
+            <Grid x:Name="gridDaten1" x:DataType="daten:TDaten" RowSpacing="-3" VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Label Text="Kfz Kennz." Style="{StaticResource ll}"/>
+                <Label Grid.Row="1" Text="{Binding AktKfz}" x:Name="txtKfzKennzeichen" Style="{StaticResource l1}"/>
+                <Label Grid.Column="1" Text="Fahrer" Style="{StaticResource ll}"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding FahrerName}" x:Name="txtFahrer" Style="{StaticResource l1}" />
+            </Grid>
+            
+            <!--<ActivityIndicator  x:Name="indikatorHandy"/>-->
+
+            <Grid x:Name="gridLieferung" x:DataType="daten:TApiLieferung" RowSpacing="-3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Label Text="Baustelle" Style="{StaticResource ll}"/>
+                <Label Grid.Row="1" Grid.ColumnSpan="3">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding NR}" TextColor="Red" FontAttributes="Bold" Style="{StaticResource l1}"/>
+                            <Span Text=" " />
+                            <Span Text="{Binding Bst}" Style="{StaticResource l1}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Text="Ort/Strasse"  Grid.Row="2" Style="{StaticResource ll}"/>
+                <Label Text="{Binding Ort}" Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource l1}" LineBreakMode="TailTruncation" />
+                <Label Text="{Binding Str}"  Grid.Row="4" Grid.ColumnSpan="3" Style="{StaticResource l1}" LineBreakMode="TailTruncation" />
+
+                <Label Grid.Row="6" Grid.ColumnSpan="2" Text="Kunde" Style="{StaticResource ll}" />
+                <Label Grid.Row="7" Grid.ColumnSpan="2" Text="{Binding KU}" Style="{StaticResource l1}"/>
+                <Label Grid.Column="2" Grid.Row="6" Text="Lieferwerk" Style="{StaticResource ll}" />
+                <Label Grid.Column="2" Grid.Row="7" Text="{Binding Werk}" Style="{StaticResource l1}" LineBreakMode="TailTruncation"/>
+
+                <Label Grid.Row="9" Grid.ColumnSpan="2" Text="Artikel" Style="{StaticResource ll}" />
+                <Label Grid.Row="10" Grid.ColumnSpan="2" Text="{Binding AR}" Style="{StaticResource l1}" />
+                <Label Grid.Column="2" Grid.Row="9" Text="Menge" Style="{StaticResource ll}" />
+                <Label Grid.Column="2" Grid.Row="10" Text="{Binding MengeAnzeige}" Style="{StaticResource l1}" />
+
+                <Label Grid.Row="12" Text="Bestellzeit" Style="{StaticResource ll}" />
+                <Label Grid.Row="13" Text="{Binding ZB, StringFormat='{0:dd.MM HH:mm}'}" Style="{StaticResource l1}"/>
+                <Label Grid.Row="12" Grid.Column="1" Text="Geplant" Style="{StaticResource ll}" />
+                <Label Grid.Row="13" Grid.Column="1" Text="{Binding ZP, StringFormat='{0:dd.MM HH:mm}'}" Style="{StaticResource l1}"/>
+                <Label Grid.Row="12" Grid.Column="2" Text="Vorraussichtlich" Style="{StaticResource ll}"/>
+                <Label Grid.Row="13" Grid.Column="2" Text="{Binding ZeitBaustelle}" Style="{StaticResource l1}"/>
+            </Grid>
+
+            <Grid x:Name="gridDaten2" RowSpacing="-3" ColumnSpacing="-3" x:DataType="daten:TDaten">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Label Text="Aktueller Status" Style="{StaticResource ll}" />
+                <Label Grid.Row="1" Text="{Binding TextAnzeigeStatus}" Style="{StaticResource l1}" TextColor="Red"  LineBreakMode="TailTruncation"/>
+
+                <ActivityIndicator  x:Name="indikatorHandy" Grid.Column="1" Grid.RowSpan="2"/>
+
+                <Button Text="{Binding BtnActionText}" Grid.Row="3" x:Name="BtnAction" Clicked="BtnAction_Clicked" Grid.RowSpan="2" ImageSource="action.png" Padding="15"/>
+                <Button Text="Menge/Zeit" Grid.Column="1" Grid.Row="3" x:Name="BtnMengeZeit" IsEnabled="{Binding LfsGebunden}" Clicked="BtnZusatzInfo_Clicked"/>
+                <Button Text="Korr. Status" Grid.Column="1" Grid.Row="4" x:Name="BtnLiefKorrektur" IsEnabled="{Binding LfsGebunden}" Clicked="BtnStatusKorrektur_Clicked"/>
+
+                <Button Text="Übersicht Lieferungen" Grid.Row="6" Clicked="BtnUebersichtLieferungen_Clicked"/>
+                <Button Text="Aktualisieren" Grid.Column="1" Grid.Row="6" Clicked="BtnLieferungenAktualisieren_Clicked"/>
+                
+                <Button Text="Unterbrechung" Grid.Row="8" Grid.RowSpan="2" Clicked="Unterbrechung_Clicked" Padding="15" ImageSource="unterbrechen"/>
+                <Button Text="Route" Grid.Column="1" Grid.Row="8" Clicked="Route_Clicked" IsEnabled="{Binding LfsGebunden}" />
+                <Button Text="Abmelden" Grid.Column="1" Grid.Row="9" Clicked="Abmelden_Clicked" TextColor="Blue" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

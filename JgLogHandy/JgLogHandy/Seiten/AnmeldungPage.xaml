@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:daten="clr-namespace:JgLogHandy"
+             mc:Ignorable="d"
+             x:Class="JgLogHandy.Seiten.AnmeldungPage" Title="JgLogistik - Anmeldung">
+    <ContentPage.Content>
+
+        <StackLayout Spacing="-3" Margin="10" x:DataType="daten:TDaten" x:Name="gridDaten">
+            <StackLayout.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Padding" Value="20"></Setter>
+                </Style>
+            </StackLayout.Resources>
+
+            <ActivityIndicator x:Name="indikatorHandy"/>
+
+            <StackLayout HorizontalOptions="CenterAndExpand" Spacing="-3">
+                <Label Text="Willkommen" HorizontalOptions="Center" Style="{StaticResource l1}"/>
+                <Label Text="{Binding FahrerName}" Style="{StaticResource l1}" HorizontalOptions="Center" />
+                <Label Margin="20, 20, 20, 30" Text="Wählen Sie ein Fahrzeg und melden Sie sich am System an. Mit registrieren können wird das Handy erneut mit dem System gekoppelt." HorizontalOptions="Center" />
+            </StackLayout>
+
+            <Label Margin="0, 10, 0, 0" Text="Wählen Sie ein Fahrzeug" />
+            <ListView ItemsSource="{Binding AnzeigeListeKfz}" x:Name="listKfz" />
+
+            <Grid RowSpacing="-3" ColumnSpacing="-3"  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Button Text="am System Anmelden" Grid.ColumnSpan="2" Clicked="BtnClicked_Anmeldung" ImageSource="schluessel.png" IsEnabled="{Binding KfzVorhanden}" x:Name="BtnAnmelden"/>
+
+                <Button Text="Fahrzeuge aktuali- sieren" Clicked="BtnClicked_KfzAktualisieren" ImageSource="optionen.png" Grid.Row="1"/>
+                <Button Text="Handy regis- trieren" Clicked="BtnClicked_Registrierung" ImageSource="scan.png" Grid.Row="1" Grid.Column="1"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

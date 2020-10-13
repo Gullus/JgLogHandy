@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="JgLogHandy.Seiten.ListeLieferungenPage"
+             Title="Auswahl Lieferung">
+
+    <ContentPage.Content>
+        <ListView x:Name="lieferungen" ItemsSource="{Binding}" HasUnevenRows="True" ItemTapped="Lieferungen_ItemTapped" Margin="5">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="5" RowSpacing="-3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label Text="Baustelle" Style="{StaticResource ll}"/>
+                            <Label Grid.Row="1" Grid.ColumnSpan="2" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding NR}" TextColor="Red" FontAttributes="Bold" Style="{StaticResource l1}"/>
+                                        <Span Text=" " />
+                                        <Span Text="{Binding Bst}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label Grid.Column="2" Text="Ort" Style="{StaticResource ll}"/>
+                            <Label Grid.Column="2" Grid.Row="1" Text="{Binding Ort}" Style="{StaticResource l1}" LineBreakMode="TailTruncation" />
+
+                            <Label Grid.Row="3" Grid.ColumnSpan="2" Text="Kunde" Style="{StaticResource ll}" />
+                            <Label Grid.Row="4" Grid.ColumnSpan="2" Text="{Binding KU}" Style="{StaticResource l1}"/>
+                            <Label Grid.Column="2" Grid.Row="3" Text="Lieferwerk" Style="{StaticResource ll}" />
+                            <Label Grid.Column="2" Grid.Row="4" Text="{Binding Werk}" Style="{StaticResource l1}" LineBreakMode="TailTruncation"/>
+
+                            <Label Grid.Row="6" Grid.ColumnSpan="2" Text="Artikel" Style="{StaticResource ll}" />
+                            <Label Grid.Row="7" Grid.ColumnSpan="2" Text="{Binding AR}" Style="{StaticResource l1}" />
+                            <Label Grid.Column="2" Grid.Row="6" Text="Menge" Style="{StaticResource ll}" />
+                            <Label Grid.Column="2" Grid.Row="7" Text="{Binding MengeAnzeige}" Style="{StaticResource l1}" />
+
+                            <Label Grid.Row="9" Text="Bestellzeit" Style="{StaticResource ll}" />
+                            <Label Grid.Row="10" Text="{Binding ZB, StringFormat='{0:dd.MM HH:mm}'}" Style="{StaticResource l1}"/>
+                            <Label Grid.Row="9" Grid.Column="1" Text="Geplant" Style="{StaticResource ll}" />
+                            <Label Grid.Row="10" Grid.Column="1" Text="{Binding ZP, StringFormat='{0:dd.MM HH:mm}'}" Style="{StaticResource l1}"/>
+                            <Label Grid.Row="9" Grid.Column="2" Text="Vorraussichtlich" Style="{StaticResource ll}"/>
+                            <Label Grid.Row="10" Grid.Column="2" Text="{Binding ZeitBaustelle, StringFormat='{0:dd.MM HH:mm}'}" Style="{StaticResource l1}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
