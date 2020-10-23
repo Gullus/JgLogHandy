@@ -224,8 +224,7 @@ namespace JgLogHandy
 
             var queryString = new Dictionary<string, object>()
             {
-                { "MF", Daten.LiefModify },
-                { "IL", Daten.AktLieferung?.IL }
+                { "MF", Daten.LiefModify }
             };
 
             StartWartezeichen();

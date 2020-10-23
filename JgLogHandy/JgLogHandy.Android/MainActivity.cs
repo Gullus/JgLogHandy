@@ -22,10 +22,9 @@ namespace JgLogHandy.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
-            _AppOptionen = new AppOptionen();
-            _AppOptionen.ApiClientHandler = new CustomAndroidClientHandler();
-            
+            _AppOptionen = new AppOptionen { ApiClientHandler = new CustomAndroidClientHandler() };
             LoadApplication(new App(_AppOptionen));
 
             AppLocation.Current.LocationServiceConnected += (sender, e) =>
@@ -80,7 +79,7 @@ namespace JgLogHandy.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             // Ist notwendig, da sonst der Scan bei XSing beim ersten Mal nicht funktioniert
-            global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             if (requestCode == RC_REQUEST_LOCATION_PERMISSION)
             {

@@ -14,7 +14,7 @@
             <Setter Property="TextColor" Value="DarkBlue" />
         </Style>
         <Style x:Key="ll" TargetType="Label">
-            <!--<Setter Property="FontAttributes" Value="Bold" />-->
+            <Setter Property="FontAttributes" Value="Bold" />
         </Style>
     </Application.Resources>
 </Application>

@@ -1,6 +1,13 @@
 ﻿<!--Notwendig für die unverchlüsselte HTTP übertragung für Testzwecke--> 
 
 <network-security-config>
+
+  <!--<domain-config cleartextTrafficPermitted="true">
+    <domain includeSubdomains="true">192.168.2.20</domain>
+    --><!-- Debug port --><!--
+    <domain includeSubdomains="true">xamarin.com</domain>
+  </domain-config>-->
+  
     <base-config cleartextTrafficPermitted="true">
         <trust-anchors>
             <certificates src="system" />

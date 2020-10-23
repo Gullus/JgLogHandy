@@ -1,2 +1,8 @@
 ﻿Android Keystore (Handy App)
 Kennwort: _Pezdx65_
+
+Google Play Entwicklerkonsole
+
+Konto: joerggullus@gmail.com
+
+https://play.google.com/apps/publish/signup/
