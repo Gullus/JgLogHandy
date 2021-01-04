@@ -19,11 +19,11 @@ namespace JgLogHandy
         internal HttpClient ApiClient = null;
         public object ApiClientHandler = null;
 
-#if DEBUG
-        private const string _UrlServer = "http://Gullus-Laptop:5000/jglogapi/";
-#else
+//#if DEBUG
+//        private const string _UrlServer = "http://Gullus-Laptop:5000/jglogapi/";
+//#else
         private const string _UrlServer = "https://jglog.dd-dns.de:6101/jglogApi/";
-#endif
+//#endif
 
         public TStandort Standort { get; private set; }
 
@@ -93,7 +93,7 @@ namespace JgLogHandy
                         AnzeigeDialog(DialogArten.Fehler, Helper.StatusFehlerAnzeige(antwort.ST));
                     else
                     {
-                        Daten.ListeKfz = antwort.ListeKennzeichen;
+                        Daten.ListeKfzAsString = antwort.ListeKennzeichen;
                         Daten.FahrerName = antwort.FahrerName;
                         Daten.KennwortUser = antwort.KennwortRegistrierung;
 

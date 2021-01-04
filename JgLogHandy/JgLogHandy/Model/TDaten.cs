@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
@@ -19,24 +21,34 @@ namespace JgLogHandy
         internal string KennwortUser { get; set; } = null;
         internal string IdSession { get; set; } = null;
 
-        private string _ListeKfz = null;
-        internal string ListeKfz
+        private string _ListeKfzAsString = null;
+        internal string ListeKfzAsString
         {
-            get => _ListeKfz;
-            set {
-                _ListeKfz = value;
-                SetProperty(nameof(AnzeigeListeKfz));
-                SetProperty(nameof(KfzVorhanden));
+            get => _ListeKfzAsString;
+            set
+            {
+                _ListeKfzAsString = value;
+
+                AnzeigeListeKfz.Clear();
+                if (_ListeKfzAsString != null)
+                {
+                    var listeKfz = _ListeKfzAsString.Split(new char[] { ';' }, System.StringSplitOptions.RemoveEmptyEntries);
+                    Array.Sort(listeKfz);
+
+                    foreach (var ds in listeKfz)
+                        AnzeigeListeKfz.Add(new TAnzeigeKfzInListe(ds));
+                }
             }
         }
-        public string[] AnzeigeListeKfz { get => ListeKfz == null ? System.Array.Empty<string>() : ListeKfz.Split(new char[] { ';' }, System.StringSplitOptions.RemoveEmptyEntries); }
-        public bool KfzVorhanden => ListeKfz != null;
+
+        public ObservableCollection<TAnzeigeKfzInListe> AnzeigeListeKfz { get; set; } = new ObservableCollection<TAnzeigeKfzInListe>();
 
         private string _FahrerName = null;
         public string FahrerName
         {
             get => _FahrerName;
-            set {
+            set
+            {
                 _FahrerName = value;
                 SetProperty();
             }
@@ -54,7 +66,8 @@ namespace JgLogHandy
         public KfzActions AktKfzAction
         {
             get => _KfzAction;
-            set {
+            set
+            {
                 _KfzAction = value;
                 SetProperty(nameof(BtnActionText));
                 SetProperty(nameof(TextAnzeigeStatus));
@@ -65,7 +78,8 @@ namespace JgLogHandy
 
         public string BtnActionText
         {
-            get {
+            get
+            {
                 if (AktLieferung == null)
                     return "neue Lieferung";
                 else
@@ -85,7 +99,8 @@ namespace JgLogHandy
 
         public string TextAnzeigeStatus
         {
-            get {
+            get
+            {
                 if (AktLieferung == null)
                     return "keine Lieferung ausgewählt.";
                 else
@@ -114,21 +129,21 @@ namespace JgLogHandy
             if (Application.Current.Properties.ContainsKey("FahrerName"))
                 FahrerName = Application.Current.Properties["FahrerName"].ToString();
             if (Application.Current.Properties.ContainsKey("ListeKfz"))
-                ListeKfz = Application.Current.Properties["ListeKfz"].ToString();
+                ListeKfzAsString = Application.Current.Properties["ListeKfz"].ToString();
         }
 
         public void Speichern()
         {
             Application.Current.Properties["KennwortRegistrierung"] = KennwortUser;
             Application.Current.Properties["FahrerName"] = FahrerName;
-            Application.Current.Properties["ListeKfz"] = ListeKfz;
+            Application.Current.Properties["ListeKfz"] = ListeKfzAsString;
 
             Application.Current.SavePropertiesAsync();
         }
 
         public void SpeichernKfz()
         {
-            Application.Current.Properties["ListeKfz"] = ListeKfz;
+            Application.Current.Properties["ListeKfz"] = ListeKfzAsString;
             Application.Current.SavePropertiesAsync();
         }
 

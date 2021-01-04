@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -32,19 +31,21 @@ namespace JgLogHandy.Seiten
 
         private async void BtnClicked_Anmeldung(object sender, EventArgs e)
         {
-            var auswKfz = listKfz.SelectedItem;
-
-            if (auswKfz == null)
-            {
-                //DisplayAlert("Mein Titel", "Die Message", "Ok"); //  (, text, " Ok ");
-                _AppOptionen.AnzeigeDialog(DialogArten.Info, "Es muss ein Fahrzeug ausgewählt werden!");
-            }
+            if (_AppOptionen.Daten.AnzeigeListeKfz.Count == 0)
+                _AppOptionen.AnzeigeDialog(DialogArten.Info, "Ihnen wurde in den Stammdaten kein Fahrzeug zugeordnet. Wenden Sie sich bitte an einen verantwortlichen Mitarbeiter!");
             else
             {
-                if (!await _AppOptionen.Anmeldung(auswKfz.ToString()))
-                    return;
+                var auswKfz = (listKfz.SelectedItem as TAnzeigeKfzInListe).AnzeigeKfz;
 
-                await Navigation.PushModalAsync(new NavigationPage(new StammPage(_AppOptionen)));
+                if (auswKfz == null)
+                    _AppOptionen.AnzeigeDialog(DialogArten.Info, "Es muss ein Fahrzeug ausgewählt werden!");
+                else
+                {
+                    if (!await _AppOptionen.Anmeldung(auswKfz.ToString()))
+                        return;
+
+                    await Navigation.PushModalAsync(new NavigationPage(new StammPage(_AppOptionen)));
+                }
             }
         }
 
@@ -64,15 +65,12 @@ namespace JgLogHandy.Seiten
                     _AppOptionen.AnzeigeDialog(DialogArten.Fehler, Helper.StatusFehlerAnzeige(antwort.ApiStatus));
                 else
                 {
-                    _AppOptionen.Daten.ListeKfz = antwort.INF;
+                    _AppOptionen.Daten.ListeKfzAsString = antwort.INF;
                     _AppOptionen.Daten.SpeichernKfz();
-                    var kfzSource =_AppOptionen.Daten.ListeKfz.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries); 
-                    listKfz.ItemsSource = kfzSource;
-                    BtnAnmelden.IsEnabled = kfzSource.Length > 0;
                 }
             }
         }
-    
+
         private async void BtnClicked_Registrierung(object dender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new RegisterPage(_AppOptionen)));
