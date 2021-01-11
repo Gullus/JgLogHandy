@@ -35,16 +35,13 @@ namespace JgLogHandy.Seiten
                 _AppOptionen.AnzeigeDialog(DialogArten.Info, "Ihnen wurde in den Stammdaten kein Fahrzeug zugeordnet. Wenden Sie sich bitte an einen verantwortlichen Mitarbeiter!");
             else
             {
-                var auswKfz = (listKfz.SelectedItem as TAnzeigeKfzInListe).AnzeigeKfz;
-
-                if (auswKfz == null)
+                if (listKfz.SelectedItem == null)
                     _AppOptionen.AnzeigeDialog(DialogArten.Info, "Es muss ein Fahrzeug ausgewählt werden!");
                 else
                 {
-                    if (!await _AppOptionen.Anmeldung(auswKfz.ToString()))
-                        return;
-
-                    await Navigation.PushModalAsync(new NavigationPage(new StammPage(_AppOptionen)));
+                    var auswKfz = (listKfz.SelectedItem as TAnzeigeKfzInListe).AnzeigeKfz;
+                    if (await _AppOptionen.Anmeldung(auswKfz))
+                        await Navigation.PushModalAsync(new NavigationPage(new StammPage(_AppOptionen)));
                 }
             }
         }

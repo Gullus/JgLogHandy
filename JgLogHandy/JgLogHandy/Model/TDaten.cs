@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace JgLogHandy
@@ -14,6 +15,8 @@ namespace JgLogHandy
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public string Version => VersionTracking.CurrentVersion;
 
         public delegate void OnLieferungChangeDelegate();
         public OnLieferungChangeDelegate OnLieferungChange { get; set; }

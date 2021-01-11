@@ -16,6 +16,7 @@
         <StackLayout VerticalOptions="CenterAndExpand">
             <Label Text="Willkommen zur Registrierung" HorizontalOptions="Center" Style="{StaticResource l0}"/>
             <Label Text="Jg-Logistik" HorizontalOptions="Center" Style="{StaticResource l0}"/>
+            <Label x:Name="TxtVersion" HorizontalOptions="Center" FontAttributes="Bold" />
             <Label Margin="20, 20, 20 , 30" Text="Bitte registrieren Sie vor dem Einsatz Ihr Handy. Melden Sie sich bitte dazu bei einem Varantwortlichen. Dieser kann Ihnen die notwendigen Funktionen am Computer freischalten." HorizontalOptions="Center" />
         </StackLayout>
 

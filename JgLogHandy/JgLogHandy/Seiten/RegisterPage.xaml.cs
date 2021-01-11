@@ -19,6 +19,7 @@ namespace JgLogHandy.Seiten
         {
             InitializeComponent();
             _AppOptionen = appOptionen;
+            TxtVersion.Text = "Version " + appOptionen.Daten.Version;
             this.Appearing += (sender, e) => _AppOptionen.XamPage = this;
         }
 

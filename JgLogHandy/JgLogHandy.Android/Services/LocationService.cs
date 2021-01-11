@@ -52,25 +52,27 @@ namespace JgLogHandy.Droid.Services
         // [Obsolete("deprecated in base class")]
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
+            //todo Notification Icon setzen
+
             // Check if device is running Android 8.0 or higher and call StartForeground() if so
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
-            {
-                var notification = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
-                                   .SetContentTitle("Jg-Logistik")
-                                   .SetContentText("Logistik Programm")
-                                   //.SetSmallIcon(Resource.Drawable.notification_icon_background)
-                                   .SetOngoing(true)
-                                   .Build();
+            //if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            //{
+            //    var notification = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+            //                       .SetContentTitle("Jg-Logistik")
+            //                       .SetContentText("Logistik Programm")
+            //                       //.SetSmallIcon(Resource.Drawable.notification_icon_background)
+            //                       .SetOngoing(true)
+            //                       .Build();
 
-                var notificationManager =
-                    GetSystemService(NotificationService) as NotificationManager;
+            //    var notificationManager =
+            //        GetSystemService(NotificationService) as NotificationManager;
 
-                var chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "On-going Notification", NotificationImportance.Min);
+            //    var chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "On-going Notification", NotificationImportance.Min);
 
-                notificationManager.CreateNotificationChannel(chan);
+            //    notificationManager.CreateNotificationChannel(chan);
 
-                StartForeground(SERVICE_RUNNING_NOTIFICATION_ID, notification);
-            }
+            //    StartForeground(SERVICE_RUNNING_NOTIFICATION_ID, notification);
+            //}
 
             return StartCommandResult.Sticky;
         }
